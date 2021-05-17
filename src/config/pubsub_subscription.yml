@@ -12,6 +12,10 @@ gcp:
     id: project_id
   - value: resource.labels.subscription_id
     id: subscription_id
+  - value: metadata.system_labels.topic_project_id
+    id: topic_project_id
+  - value: metadata.system_labels.topic_id
+    id: topic_id
   metrics:
   - value: pubsub.googleapis.com/subscription/ack_message_count
     id: cloud.gcp.pubsub_googleapis_com.subscription.ack_message_count
