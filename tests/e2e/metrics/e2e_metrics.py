@@ -13,6 +13,7 @@
 #     limitations under the License.
 import json
 import os
+import time
 
 import requests
 
@@ -27,6 +28,7 @@ def test_environment_vars():
 
 
 def test_metrics_on_dynatrace():
+    time.sleep(5*60)
     url = f"{os.environ['DYNATRACE_URL']}/api/v2/metrics/query"
     params = {'from': os.environ['START_LOAD_GENERATION'],
               'to': os.environ['END_LOAD_GENERATION'],
