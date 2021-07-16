@@ -41,7 +41,11 @@ def test_metrics_on_dynatrace():
     }
     response = requests.get(url, params=params, headers=headers)
     assert response.status_code == 200
-    response_json = response.json()
-    assert 'totalCount' in response_json
-    assert response_json['totalCount'] == 1
-    assert 5 in response_json['result'][0]['data'][0]['values']
+    try:
+        print("response.text:" + response.text)
+        response_json = response.json()
+        assert 'totalCount' in response_json
+        assert response_json['totalCount'] == 1
+        assert 5 in response_json['result'][0]['data'][0]['values']
+    except Exception as e:
+        print(e)
