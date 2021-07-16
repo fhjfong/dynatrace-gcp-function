@@ -11,7 +11,6 @@
 #     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
-import json
 import os
 import time
 
@@ -29,6 +28,8 @@ def test_environment_vars():
 
 def test_metrics_on_dynatrace():
     time.sleep(5*60)
+    print(f"Try to receive execution_count metric from Dynatrace (start_time={os.environ['START_LOAD_GENERATION']} ,end_time={os.environ['END_LOAD_GENERATION']})")
+    time.sleep(5*60)
     url = f"{os.environ['DYNATRACE_URL']}/api/v2/metrics/query"
     params = {'from': os.environ['START_LOAD_GENERATION'],
               'to': os.environ['END_LOAD_GENERATION'],
@@ -40,6 +41,5 @@ def test_metrics_on_dynatrace():
     }
     response = requests.get(url, params=params, headers=headers)
     assert response.status_code == 200
-    response_json = json.loads(response.text)
-    assert 'totalCount' in response_json
-    assert response_json['totalCount'] == 5
+    assert 'totalCount' in response.json()
+    assert response.json()['totalCount'] == 5
