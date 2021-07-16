@@ -57,7 +57,7 @@ jobs:
       - export START_LOAD_GENERATION=$(date -u +%s)
 #      - ./tests/e2e/deployment-test.sh --all
       - export END_LOAD_GENERATION=$(date -u +%s)
-      - travis wait PYTHONPATH="$TRAVIS_BUILD_DIR/src" pytest tests/e2e/metrics -v
+      - travis_wait PYTHONPATH="$TRAVIS_BUILD_DIR/src" pytest tests/e2e/metrics -v
 #      - helm -n dynatrace ls --all --short | grep dynatrace-gcp-function | xargs -L1 helm -n dynatrace delete
 #    after_script:
 #      - chmod +x ./tests/e2e/deployment-test-cleanup.sh
