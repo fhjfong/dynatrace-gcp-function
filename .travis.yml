@@ -56,8 +56,8 @@ jobs:
 #      - helm -n dynatrace ls --all --short | grep dynatrace-gcp-function | xargs -L1 helm -n dynatrace delete
       - export START_LOAD_GENERATION=$(date -u +%s)
       - ./tests/e2e/deployment-test.sh --all
-      - export END_LOAD_GENERATION=$(date -u +%s)
       - sleep 300
+      - export END_LOAD_GENERATION=$(date -u +%s)
       - pytest tests/e2e/metrics -v
       - helm -n dynatrace ls --all --short | grep dynatrace-gcp-function | xargs -L1 helm -n dynatrace delete
     after_script:
