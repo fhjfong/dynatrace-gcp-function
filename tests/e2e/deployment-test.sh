@@ -160,7 +160,8 @@ for i in {1..5}; do
   -H "Authorization: bearer $(gcloud auth print-identity-token)"
 done
 
-echo "End of generating load on GC Function: $(date -u +%s)"
+echo
+echo "End of generating load on GC Function: $(date -u +%s%3N)"
 
 if [[ ${METRICS_CONTAINER_STATE} == 0 ]] && [[ ${LOGS_CONTAINER_STATE} == 0 ]]; then
   echo "Deployment completed successfully"
